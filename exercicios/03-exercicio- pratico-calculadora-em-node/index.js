@@ -4,48 +4,13 @@ let prompt = require('prompt-sync')();
 
 let {somar, subtrair, multiplicar, dividir, aoQuadrado, raizQuadrada} = require('./CalculadoraNode')
 
-console.log("")
-console.log("### SOMA ###")
-let somaA = parseFloat(prompt("Digite o primeiro número que deseja somar: "))
-let somaB = parseFloat(prompt("Digite o segundo número que deseja somar: "))
-let soma = somar(somaA, somaB)
+let numA = parseFloat(prompt("Digite o primeiro número: "));
+let numB = parseFloat(prompt("Digite outro número: "));
 
-console.log("A soma dos números é: " + soma)
 
-console.log("")
-console.log("### SUBTRAÇÃO ###")
-let subA = parseFloat(prompt("Digite o primeiro número que deseja subtrair:"))
-let subB = parseFloat(prompt("Digite o segundo número que deseja subtrair:"))
-let subtracao = subtrair(subA, subB)
-
-console.log("A subtração dos números é: " + subtracao)
-
-console.log("")
-console.log("### MULTIPLICAÇÃO ###")
-let multA = parseFloat(prompt("Digite o primeiro número que deseja multiplicar:"))
-let multB = parseFloat(prompt("Digite o segundo número que deseja multiplicar:"))
-let multiplicacao = multiplicar(multA, multB)
-
-console.log("A multiplicação dos números é: " + multiplicacao)
-
-console.log("")
-console.log("### DIVISÃO ###")
-let divA = parseFloat(prompt("Digite o primeiro número que deseja dividir:"))
-let divB = parseFloat(prompt("Digite o segundo número que deseja dividir:"))
-let divisao = dividir(divA, divB)
-
-console.log("A divisão dos números é: " + divisao)
-
-console.log("")
-console.log("### AO QUADRADO ###")
-let quadA = parseFloat(prompt("Digite o número que deseja elevar ao quadrado:"))
-let quadrado = aoQuadrado(quadA)
-
-console.log("Esse número elevado ao quadrado é: " + quadrado)
-
-console.log("")
-console.log("### RAIZ QUADRADA ###")
-let raizA = parseFloat(prompt("Digite o número que deseja saber a raiz quadrada:"))
-let raiz = raizQuadrada(raizA)
-
-console.log("A raiz quadrada desse número é: " + raiz)
+console.log('A soma dos numeros é : ', somar(numA, numB));
+console.log('A subtração dos numeros é : ', subtrair(numA, numB));
+console.log('A multplicação dos números é: ', multiplicar(numA, numB));
+console.log('A divisão dos números é : ', dividir(numA, numB));
+console.log('O número elevado ao quadrado é :', aoQuadrado(numA));
+console.log('A raiz quadrada desse número é :', raizQuadrada(numB));
