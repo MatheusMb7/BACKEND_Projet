@@ -4,58 +4,22 @@ MAtéria: Constreção de backend
 
 turma: 2A
 
-Aluno: Matheus BRuno
+Aluno: Matheus Bruno
 
 
 
-console.log("####03 Exercício calculadora node#####")
+Cria uma pasta no terminal
+npm init -y
+npm install express Cors 
+npm install --save-dev nodemon jest supertest
+cria estrutura do projeto
+ cria 'routes' pra colocar as rotas e a implementação
+ index.js 
+packet.json e ajusra o script de start e test
+ "nodemon index.js" e "jest"
 
-let prompt = require('prompt-sync')();
+ index.js -> configuração do express e direcionamento dos routers
+  routers -> os roteadores e a logica
 
-let {somar, subtrair, multiplicar, dividir, aoQuadrado, raizQuadrada} = require('./CalculadoraNode')
-
-console.log("")
-console.log("### SOMA ###")
-let somaA = parseFloat(prompt("Digite o primeiro número que deseja somar: "))
-let somaB = parseFloat(prompt("Digite o segundo número que deseja somar: "))
-let soma = somar(somaA, somaB)
-
-console.log("A soma dos números é: " + soma)
-
-console.log("")
-console.log("### SUBTRAÇÃO ###")
-let subA = parseFloat(prompt("Digite o primeiro número que deseja subtrair:"))
-let subB = parseFloat(prompt("Digite o segundo número que deseja subtrair:"))
-let subtracao = subtrair(subA, subB)
-
-console.log("A subtração dos números é: " + subtracao)
-
-console.log("")
-console.log("### MULTIPLICAÇÃO ###")
-let multA = parseFloat(prompt("Digite o primeiro número que deseja multiplicar:"))
-let multB = parseFloat(prompt("Digite o segundo número que deseja multiplicar:"))
-let multiplicacao = multiplicar(multA, multB)
-
-console.log("A multiplicação dos números é: " + multiplicacao)
-
-console.log("")
-console.log("### DIVISÃO ###")
-let divA = parseFloat(prompt("Digite o primeiro número que deseja dividir:"))
-let divB = parseFloat(prompt("Digite o segundo número que deseja dividir:"))
-let divisao = dividir(divA, divB)
-
-console.log("A divisão dos números é: " + divisao)
-
-console.log("")
-console.log("### AO QUADRADO ###")
-let quadA = parseFloat(prompt("Digite o número que deseja elevar ao quadrado:"))
-let quadrado = aoQuadrado(quadA)
-
-console.log("Esse número elevado ao quadrado é: " + quadrado)
-
-console.log("")
-console.log("### RAIZ QUADRADA ###")
-let raizA = parseFloat(prompt("Digite o número que deseja saber a raiz quadrada:"))
-let raiz = raizQuadrada(raizA)
-
-console.log("A raiz quadrada desse número é: " + raiz)
+  npm start pra rodar o projeto
+  postman pra montar as requisições 
