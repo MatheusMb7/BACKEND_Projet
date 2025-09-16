@@ -10,7 +10,7 @@ Aluno: Matheus Bruno
 
 Cria uma pasta no terminal
 npm init -y
-npm install express Cors 
+npm install express cors 
 npm install --save-dev nodemon jest supertest
 cria estrutura do projeto
  cria 'routes' pra colocar as rotas e a implementação
@@ -22,4 +22,34 @@ packet.json e ajusra o script de start e test
   routers -> os roteadores e a logica
 
   npm start pra rodar o projeto
-  postman pra montar as requisições 
+  postman pra montar as requisições e testar o projeto
+
+
+
+
+
+  -Cadastro de Aluno(CRUD)
+
+id
+nome
+CPF
+email
+dataNascimento
+
+  # Operações
+
+    Criar
+    - POST /pessoas
+
+    Listar todos
+    - GET /pessoas
+
+    Buscar um
+    - GET /pessoas/{id}
+
+    editar
+    - PUT /pessoas/{id}
+
+    deletar
+    - DELETE /pessoas/{id}
+    exclusão lógica
