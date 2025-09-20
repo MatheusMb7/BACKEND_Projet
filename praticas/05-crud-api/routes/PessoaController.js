@@ -23,6 +23,27 @@ let pessoas = [
 // Criar
 // - POST /pessoas
 router.post('/pessoas', (req, res, next) => {
+const {nome, cpf, email, dataNascimento} = req.body
+// validar se os dados ieram
+if(!nome|| !cpf || !email || !dataNascimento)    {
+    return res.status(400).json({error: "nome, cpf, email e data de nascimento são obrigatorios"})
+}
+// validar se o CPF ja existe
+const pessoa = pessoas.find (pessoa => pessoa.cpf == cpf)
+if(pessoa){
+    return res.status(409).json({error: "CPF já cadastrado"})
+}
+// cadastrar a nova pessoa na lista
+const novaPessoa = {
+    id: Date.now(),
+    nome,
+    cpf, 
+    email,
+    dataNascimento
+}
+// inserir a nova pessoa montada na lista
+pessoas.push(novaPessoa)
+res.status(201).json({message: "Pessoa Cadastrada!!!!", novaPessoa})
 
 })
 
@@ -44,16 +65,37 @@ router.get('/pessoas/:id', (req, res, next) => {
 
 })
 
-// editar
+// atualizar
 // - PUT /pessoas/{id}
 router.put('/pessoas/:id', (req, res, next) => {
-    
+    const {nome, email, dataNascimento} = req.body
+if(!nome || !email || !dataNascimento){
+    return res.status(400).json({error: "nome, email e data de nascimento são obrigatorios"})
+}
+// validar se a pessoa com aquele ID existe na lista
+const idRecebido = req.params.id
+const pessoa = pessoas.find(pessoa => pessoa.id == idRecebido)
+if(!pessoa){
+    return res.status(404).json({error: "pessoa não encontrada"})
+}
+// sobreescreve os dados das pessoas pra atualizar
+pessoa.nome = nome
+pessoa.email = email
+pessoa.dataNascimento = dataNascimento
+res.json({message: "Pessoa atualizada com sucesso"})
 })
 
 // deletar
 // - DELETE /pessoas/{id}
 router.delete('/pessoas/:id', (req, res, next) => {
-    
+    const idRecebido = req.params.id
+    const pessoa = pessoas.find(pessoa => pessoa.id == idRecebido)
+    if (!pessoa) {
+        return res.status(404).json({error:"Pessoa não encontrada"})
+    }
+    pessoas = pessoas.filter(pessoa => pessoa.id != idRecebido)
+
+    res.json({message: "Pessoa excluida com sucesso"})
 })
 
 
