@@ -45,6 +45,12 @@ app.post('/pessoas', async (req, res, next) => {
     res.status(201).json(pessoaCriada)
 })
 
+//HEAD
+app.get('/pessoas', async (req,res, next) =>{
+    const pessoas = await pessoaModel.find()
+    res.json(pessoas)
+})
+
 
 
 
