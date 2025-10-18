@@ -1,5 +1,8 @@
 IESB 
 
+git config --global user.name "Matheus Bruno"
+git config --global user.email "matheussbsiilva@gmail.com"
+
 MAtéria: Constreção de backend
 
 turma: 2A
