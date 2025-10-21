@@ -50,7 +50,7 @@ app.post('/livros', async (req, res, next) => {
 
 // Leitura
 app.get('/livros', async (req, res, next) => {
-    const livros = await PessoaModel.find()
+    const livros = await livroModel.find()
     res.json(livros)
   })
 
@@ -66,12 +66,15 @@ app.put('/livros/:id', async (req, res, next) => {
     }
     res.json(livroAtualizado)
   })
-//  Exclusão
-app.delete('/livros/:id', async (req, res, next) => {
+
+// Exclusão
+  app.delete('/livros/:id', async (req, res, next) => {
     const id = req.params.id
     await livroModel.findByIdAndDelete(id)
-    res.status(204)
-})
+    res.status(204).send()
+  })
+  
+  
 
 
 
