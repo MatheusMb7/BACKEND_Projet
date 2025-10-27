@@ -1,45 +1,52 @@
-const express= require('express')
+const express = require('express')
 const router = express.Router()
-// Import O  MODELO
+// importo o modelo
 const PessoaModel = require('../models/PessoaModel')
-//  importa os validadores
-const {validarNovaPessoa} = require('../validators/PessoaValidator')
+
+// importo os validadores
+const { validarNovaPessoa } = require('../validators/PessoaValidator')
+const { validarID } = require('../validators/IDValidator')
+
 // Rotas
 // Cadastro
-router.post('/pessoas',validarNovaPessoa, async (req, res, next) => {
-    const dados =req.body
-    const pessoaCadastrada = await PessoaModel.create(dados)
-    res.status(201).json(pessoaCadastrada)
-})
-// Leitura
-router.get('./pessoas', async (req, res, next) => {
-    const pessoas = await PessoaModel.find()
+router.post('/pessoas', validarNovaPessoa, async (req, res, next) => {
+  const dados = req.body
+  const pessoaCadastrada = await PessoaModel.create(dados)
+  res.status(201).json(pessoaCadastrada)
 })
 
-router.get('./pessoas/:id', async (req, res, next) =>{
-    const pessoaEncontrada = await PessoaModel.findById(req.params.id)
-    if(!pessoaEncontrada) {
-        return res.status(404).json({ erro: "Pessoa não encontrada!" })
-    }
-} )
+// Leitura
+router.get('/pessoas', async (req, res, next) => {
+  const pessoas = await PessoaModel.find()
+  res.json(pessoas)
+})
+
+router.get('/pessoas/:id', validarID, async (req, res, next) => {
+  const pessoaEcontrada = await PessoaModel.findById(req.params.id)
+  if (!pessoaEcontrada) {
+    return res.status(404).json({ erro: "Pessoa não econtrada!" })
+  }
+  res.json(pessoaEcontrada)
+})
 
 // Atualização
-router.put('/pessoa/ :id', async (req, res, next) => {
-    const novosDados = req.body
-    const id= req.params.id
-    const pessoaAtualizada = await PessoaModel.findByIdAndUpdate(id, novosDados, {
-        new: true
-    })
-    if (!pessoaAtualizada) {
-        return res.status(404).json({ erro: "Pessoa não encontrada!"})
-    }
-    res.json(pessoaAtualizada)
-})
-// Exclusão
-router.delete('/pessoas/:id', async (req, res, next) => {
-    const id = req.params.id
-    await PessoaModel.findByIdAndDelete
-    res.status(204).send()
+router.put('/pessoas/:id', validarID, async (req, res, next) => {
+  const id = req.params.id
+  const novosDados = req.body
+  const pessoaAtualizada = await PessoaModel.findByIdAndUpdate(id, novosDados, { new: true })
+  if (!pessoaAtualizada) {
+    return res.status(404).json({ erro: "Pessoa não econtrada!" })
+  }
+  res.json(pessoaAtualizada)
 })
 
-module.exports = express.Router
+// Exclusão
+router.delete('/pessoas/:id', validarID, async (req, res, next) => {
+  const id = req.params.id
+  await PessoaModel.findByIdAndDelete(id)
+  res.status(204).send()
+})
+
+
+
+module.exports = router
