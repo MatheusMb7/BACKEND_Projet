@@ -32,6 +32,14 @@ app.use(DepartamentoController)
 const FuncionarioController = require('./controllers/FuncionarioController')
 app.use(FuncionarioController)
 
+const ProjetoController = require('./controllers/FuncionarioController')
+app.use(ProjetoController)
+
+const TarefaController = require('./controllers/FuncionarioController')
+app.use(TarefaController)
+
+
+
 app.listen(3000, () => {
   console.log("Aplicação rodando -> http://locahost:3000")
 })
